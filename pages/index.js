@@ -22,7 +22,7 @@ function Titulo(props) {
 
 export default function PaginaInicial() {
   const [username, setUsername] = React.useState("dawsompablo");
-
+  const defaultImage = "dawsompablo";
   const roteamento = useRouter();
 
   return (
@@ -62,7 +62,7 @@ export default function PaginaInicial() {
             as="form"
             onSubmit={function (event) {
               event.preventDefault();
-              console.log("submetido!");
+
               roteamento.push("/chat");
             }}
             styleSheet={{
@@ -90,7 +90,7 @@ export default function PaginaInicial() {
               value={username}
               onChange={function (event) {
                 const valor = event.target.value;
-
+                console.log("o valor foi alterado!");
                 setUsername(valor);
               }}
               fullWidth
@@ -140,7 +140,9 @@ export default function PaginaInicial() {
                 border: "3px solid",
                 borderColor: appConfig.theme.colors.neutrals[100],
               }}
-              src={`https://github.com/${username}.png`}
+              src={`https://github.com/${
+                username.length > 2 ? username : defaultImage
+              }.png`}
             />
             <Text
               variant="body4"
